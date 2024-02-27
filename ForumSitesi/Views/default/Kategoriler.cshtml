@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_UIForumLayout.cshtml";
+}
+@using EntityLayer.Concrete
+@model List<Topic>
+<div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0">
+    <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;">
+    </div>
+    <div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}"
+         data-toggle="sticky" class="sticky" style="top: 85px;">
+        <div class="sticky-inner">
+
+            <div class="bg-white mb-3">
+                <h4 class="px-3 py-4 op-5 m-0">
+                    En Çok Konuşulan Konular
+                </h4>
+
+                <hr class="m-0">
+               @foreach (var category in Model)
+                {       
+                    <div class="pos-relative px-3 py-3">
+                        <h6 class="text-primary text-sm">
+                            <a href="#" class="text-primary">@category.Category.CategoryName</a>
+                        </h6>
+                    </div>
+                    <hr class="m-0">
+                }
+                <hr class="m-0">
+            </div>
+            
+        </div>
+    </div>
+</div>

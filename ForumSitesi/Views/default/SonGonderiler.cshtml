@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "SonGonderiler";
+    Layout = "~/Views/Shared/_UIForumLayout.cshtml";
+}
+@using EntityLayer.Concrete
+@model List<Post>
+
+@{
+
+}
+<div class="container-md shadow-sm bg-body mt-5">
+</div>
+<div class="row">
+
+    @foreach (var topic in Model)
+    {
+        <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+            <div class="row align-items-center">
+                <div class="col-md-8 mb-3 mb-sm-0">
+                    <h5>
+                        <a asp-action="Index" asp-controller="Konu" asp-route-id="@topic.TopicID" class="text-primary">@topic.Topic.TopicTitle</a>
+                    </h5>
+                    <p class="text-sm">
+                        <span class="op-6">Göneri Tarihi</span>
+                        <p>
+                            @{
+
+                                var tarih = @DateTime.Now - @Convert.ToDateTime(topic.Topic.TopicsDate);
+
+                            }
+                            @tarih.Days gün @tarih.Hours saat @tarih.Minutes Dakika Önce
+
+                        </p>
+                    </p>
+
+                </div>
+                <div class="card-header">
+                    <i class="bi bi-person-circle">@topic.AppUser.UserName</i>
+                    <span class="text-center"></span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">@Html.Raw(topic.PostContent) </p>
+                    <a href="#" class="btn btn-primary float-end mx-1"><i class="bi bi-chat-left-dots"></i></a>
+                    <a href="#" class="btn btn-warning float-end mx-1"><i class="bi bi-exclamation-triangle"></i></a>
+                </div>
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+    </div>
+
+
+</div>

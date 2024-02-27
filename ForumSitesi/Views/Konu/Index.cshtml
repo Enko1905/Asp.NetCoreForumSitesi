@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UIForumLayout.cshtml";
+}
+@using EntityLayer.Concrete
+@model dynamic
+
+<style>
+    body {
+        background-color: #232326 !important;
+    }
+  
+</style>
+
+<div class="card shadow-sm bg-body mt-5">
+    <div class="card-header">
+        <h1 class="display-6">@Model.Gettopic.TopicTitle</h1>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Oluşturma Tarihi : @Model.Gettopic.TopicsDate</li>
+        <li class="list-group-item">Kategori :@Model.Gettopic.Category.CategoryName </li>
+        <li class="list-group-item">Cevap Sayısı :@Model.GetPostCount</li>
+        <li class="list-group-item">
+            <a href="#" class="btn btn-primary"><i class="bi bi-chat-left-dots"></i> Cevap Yaz</a>
+            <a href="#" class="btn btn-warning"><i class="bi bi-exclamation-triangle"></i> Konuyu Şikayet Et</a>
+            <a href="#" class="btn btn-primary text-light" style="background-color:#035AA6 !important;">
+                <i class="bi bi-e"></i>Öne Çıkar
+            </a>
+        </li>
+
+    </ul>
+</div>
+<div class="row mt-3 mb-3 ">
+
+    <div class="col-8">
+
+        @foreach (var Itempost in Model.Getpost)
+        {
+            <div class="card mb-3 commentcard">
+                <div class="card-header">
+                    <i class="bi bi-person-circle"></i>
+                    <span class="text-center">@Itempost.AppUser.UserName</span>
+                    <span class="badge bg-primary">Moderatör</span>
+                    <span class="badge bg-warning">Yönetici</span>
+                    <span class="badge bg-info">Üye</span>
+
+                    @{
+                        var test = Itempost.Topic.AppUserId == Itempost.AppUserId ? true : false;
+                    }
+                    @if (test)
+                    {
+                        <span class="badge bg-success float-end rounded-0">
+                            Konuyu Açan<i class="bi bi-check2-all"></i>
+                        </span>
+                    }
+
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">@Html.Raw(@Itempost.PostContent) </p>
+                    <a href="#" class="btn btn-primary float-end mx-1"><i class="bi bi-chat-left-dots"></i></a>
+                    <a href="#" class="btn btn-warning float-end mx-1"><i class="bi bi-exclamation-triangle"></i></a>
+                </div>
+            </div>
+        }
+       
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2>Cevap Yaz</h2>
+            </div>
+            <div class="col-12">
+                <textarea class="ckeditor mt-5" name="editor1"></textarea>
+                <a href="#" class="btn btn-primary float-end m-1">Gönder</a>
+            </div>
+        </div>
+
+        <!-- Buraya kadar istediğiniz kadar buton ve içerik ekleyebilirsiniz -->
+
+        <script>
+            function gosterGizle(divId) {
+                var div = document.getElementById(divId);
+                if (div.style.display === "none") {
+                    div.style.display = "block";
+                } else {
+                    div.style.display = "none";
+                }
+            }
+        </script>
+
+    </div>
+    <div class="col-4">
+        <div class="card mb-3 commentcard text-center">
+            <div class="card-header">
+                En Popüler Konular
+                </div>
+                
+                @foreach (var item in Model.MostVotedTopic)
+                {
+                    <div class="pos-relative">
+                        <h6 class="text-primary text-sm">
+                            <a href="#" class="text-primary">@item.TopicTitle</a>
+                        </h6>
+                        <p class="mb-0 text-sm">
+                        @item.TopicVotes Kişi Beğendi
+                        </p>
+                    </div>
+                    <hr class="m-0">
+                }
+        </div>
+    </div>
+</div>
+

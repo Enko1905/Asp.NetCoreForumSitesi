@@ -1,0 +1,21 @@
+﻿@model Task<List<Topic>>
+
+<html>
+    <head></head>
+    <body>
+
+
+@foreach (var item in await Model)
+{
+    @item.AppUser.Name <br/>
+    @item.AppUser.Gender <br/>
+    @item.AppUser.Email <br/>
+    @item.AppUserId
+   
+}
+    @{
+       
+    }
+ 
+</body>
+</html>

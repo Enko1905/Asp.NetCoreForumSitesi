@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f8f9fa;
+    }
+
+    .register-container {
+        max-width: 600px;
+        padding: 40px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .register-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-floating {
+        margin-bottom: 20px;
+    }
+
+    .form-check {
+        margin-bottom: 20px;
+    }
+
+    .form-check-input {
+        margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container-sm register-container">
+    <h2>Kayıt Ol</h2>
+    <form>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="isim" placeholder="isim" required>
+            <label for="emteail">kullanıcı Adı</label>
+        </div>
+        <div class="form-floating">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            <label for="email">E-posta adresi</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" placeholder="Şifre" required>
+            <label for="password">Şifre</label>
+        </div>
+        <div class="form-floating">
+            <input type="number" class="form-control" id="age" placeholder="Yaş" required>
+            <label for="age">Yaş</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+            <label class="form-check-label" for="male">Erkek</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+            <label class="form-check-label" for="female">Kadın</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+            <label class="form-check-label" for="male">Belirtmek İstemiyorum</label>
+        </div>
+        <button type="submit" class="btn btn-primary d-block w-100">Kayıt Ol</button>
+    </form>
+</div>
+</body>
+</html>

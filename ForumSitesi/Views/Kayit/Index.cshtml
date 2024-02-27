@@ -1,0 +1,88 @@
+﻿@model ForumSitesi.Models.AppUserViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kayıt ol</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+
+        .register-container {
+            max-width: 600px;
+            padding: 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+            .register-container h2 {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+        .form-floating {
+            margin-bottom: 20px;
+        }
+
+        .form-check {
+            margin-bottom: 20px;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        form:invalid button[type="submit"] {
+            pointer-events: none;
+            opacity: .3;
+        }
+
+        form:valid button[type="submit"] {
+            pointer-events: initial;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-sm register-container">
+        <h2>Kayıt Ol</h2>
+        <form method="post">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="UserName" name="UserName" placeholder="isim" required>
+                <label for="emteail">Ad</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="isim" required>
+                <label for="emteail">kullanıcı Adı</label>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="Mail" name="Mail" placeholder="name@example.com" required>
+                <label for="email">E-posta adresi</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="Gender" name="Gender" placeholder="isim" required>
+                <label for="emteail">Cinsiyet</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Şifre" required>
+                <label for="password">Şifre</label>
+            </div>
+       
+
+            <button type="submit" class="btn btn-primary d-block w-100">Kayıt Ol</button>
+        </form>
+    </div>
+</body>
+</html>
