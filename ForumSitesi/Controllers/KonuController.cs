@@ -26,10 +26,15 @@ namespace ForumSitesi.Controllers
         TopicManager _topicManager = new TopicManager(new EfTopicDal());
         CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
 
-        public IActionResult Index(string? title, int? id)
+        public IActionResult Index(string? title, int id)
         {
             bool giris = false;
             string userId = _userManager.GetUserId(User);
+
+            var GoruntulemeSayisi = _topicManager.TGetById(id);
+            GoruntulemeSayisi.TopicView += 1;
+            _topicManager.TUpdate(GoruntulemeSayisi);
+
 
             if (userId != null)
             {
@@ -37,7 +42,7 @@ namespace ForumSitesi.Controllers
             }
             ViewBag.LoginUserId = userId;
             var topics = _topicManager.GetTopicListWithCategory();
-            if (id.HasValue)
+            if (id!=null)
             {
                 var result = new
                 {

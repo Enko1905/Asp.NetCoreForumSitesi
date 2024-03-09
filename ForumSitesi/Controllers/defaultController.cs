@@ -19,6 +19,7 @@ namespace ForumSitesi.Controllers
 
         TopicManager _topicManager = new TopicManager(new EfTopicDal());
         CategoryManager _category = new CategoryManager(new EfCategoryDal());
+        PostManager _postmanager = new PostManager(new EfPostDal());
         public IActionResult Index()
         {
             bool giris = false;
@@ -44,6 +45,7 @@ namespace ForumSitesi.Controllers
                 UserGiris = giris,
                 istatistik = topics.Count(),
                 userSayisi = users.GetAwaiter().GetResult().Count(),
+                postSayisi = _postManager.GetAll().Count(),
                 //sonUser =   users.GetAwaiter().GetResult().OrderByDescending(x => x.TopicID).Take(1).SingleOrDefault(),
                 //user = users
             };

@@ -19,7 +19,8 @@ namespace DataAccessLayer.EntityFramework
             {
                 return c.Posts
                     .Include(t => t.Topic)
-                    .Include(u => u.AppUser).ToList();
+                    .Include(u => u.AppUser)
+                    .ToList();
             }
         }
     }

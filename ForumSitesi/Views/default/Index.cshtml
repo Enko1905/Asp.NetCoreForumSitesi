@@ -94,10 +94,10 @@
                                 <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">@topic.TopicVotes Oy</span>
                             </div>
                             <div class="col px-1">
-                                <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">122</span>
+                                <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">0</span>
                             </div>
                             <div class="col px-1">
-                                <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">290</span>
+                                <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">@topic.TopicView</span>
                             </div>
                         </div>
                     </div>
@@ -150,20 +150,17 @@
                     <hr class="my-0">
                     <div class="row text-center d-flex flex-row op-7 mx-0">
                         <div class="col-sm-6 flex-ew text-center py-3 border-bottom border-right">
-                            <a class="d-block lead font-weight-bold" href="#">@Model.istatistik</a> Konular
+                            <a class="d-block lead font-weight-bold" href="~/default">@Model.istatistik</a> Konular
                         </div>
                         <div class="col-sm-6 col flex-ew text-center py-3 border-bottom mx-0">
-                            <a class="d-block lead font-weight-bold" href="#">1.856</a> Gönderiler
+                            <a class="d-block lead font-weight-bold" href="~/default">@Model.postSayisi</a> Gönderiler
                         </div>
                     </div>
                     <div class="row d-flex flex-row op-7">
                         <div class="col-sm-6 flex-ew text-center py-3 border-right mx-0">
-                            <a class="d-block lead font-weight-bold" href="#">@Model.userSayisi</a> Üyeler
+                            <a class="d-block lead font-weight-bold" href="~/default">@Model.userSayisi</a> Üyeler
                         </div>
-                        <div class="col-sm-6 flex-ew text-center py-3 mx-0">
-                            <a class="d-block lead font-weight-bold" href="#">
-                            </a> En Yeni Üye
-                        </div>
+                       
                     </div>
                 </div>
             </div>

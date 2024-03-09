@@ -30,7 +30,7 @@ else
         <li class="list-group-item">Kategori :@Model.Gettopic.Category.CategoryName </li>
         <li class="list-group-item">Cevap Sayısı :@Model.GetPostCount</li>
         <li class="list-group-item">
-            <a href="#" class="btn btn-primary"><i class="bi bi-chat-left-dots"></i> Cevap Yaz</a>
+            <a href="#PostContent" class="btn btn-primary"><i class="bi bi-chat-left-dots"></i> Cevap Yaz</a>
             <a href="#" class="btn btn-warning"><i class="bi bi-exclamation-triangle"></i> Konuyu Şikayet Et</a>
             <a href="#" class="btn btn-primary text-light" style="background-color:#035AA6 !important;">
                 <i class="bi bi-e"></i>Öne Çıkar
@@ -76,7 +76,7 @@ else
             <div class="col-12">
                 <h2>Cevap Yaz</h2>
             </div>
-            <div class="col-12">
+            <div class="col-12" id="PostContent">
                 @if (!Model.UserGiris)
                 {
                     <a  class="btn btn-primary float-end m-1" href="~/Giris">Mesaj Göndermek İçin Giriş Yap</a>
@@ -88,7 +88,7 @@ else
                         @Html.Hidden("AppUserId", (string)Convert.ToString(Model.GetUserId))
                         @Html.Hidden("TopicID", (string)Convert.ToString(Model.Gettopic.TopicID))
 
-                        <textarea class="ckeditor mt-5" name="PostContent"></textarea>
+                        <textarea class="ckeditor mt-5" name="PostContent" id="PostContent"></textarea>
                         <button type="submit" class="btn btn-primary float-end m-1">Gönder</button>
                     </form>
                 }
