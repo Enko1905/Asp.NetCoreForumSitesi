@@ -1,5 +1,11 @@
+
 Asp Core Katmanlı Mimari Forum Temel Düzey Forum Sayfası
 Identity Framework
+
+veri tabanı bağlantı dosyası DataAccessLayer/Concrete/RepositoryContext.cs
+veri tabanı yükleme
+add-migration [name]
+update-database
 
 Proje Devam ediyor Eksikler Var
 
