@@ -19,7 +19,8 @@ namespace ForumSitesi.Controllers
 
         TopicManager _topicManager = new TopicManager(new EfTopicDal());
         CategoryManager _category = new CategoryManager(new EfCategoryDal());
-        PostManager _postmanager = new PostManager(new EfPostDal());
+        PostManager _postManager = new PostManager(new EfPostDal());
+
         public IActionResult Index()
         {
             bool giris = false;
@@ -33,27 +34,30 @@ namespace ForumSitesi.Controllers
             {
                 giris = false;
             }
-
+            var users = _userManager.Users.Count();
             var topics = _topicManager.GetTopicListWithCategory();
-            var users = _topicManager.GetPostListWithUserAsync();
+            var topicVotes = topics.OrderByDescending(x => x.TopicVotes).ThenByDescending(x => x.TopicID).ToList().Take(10);
+            var newestTopics = topics.OrderByDescending(x => x.TopicID).ToList().Take(20);
             var category = _category.GetAll();
+            var postCount = _postManager.GetAll().Count();
+
             var result = new
             {
-                MostVotedTopic = topics.OrderByDescending(x => x.TopicVotes).ThenByDescending(x => x.TopicID).ToList().Take(10),
-                NewestTopic = topics.OrderByDescending(x => x.TopicID).ToList().Take(20),
+                MostVotedTopic = topicVotes,
+                NewestTopic = newestTopics,
                 category = category.ToList(),
                 UserGiris = giris,
                 istatistik = topics.Count(),
-                userSayisi = users.GetAwaiter().GetResult().Count(),
-                postSayisi = _postManager.GetAll().Count(),
+                userSayisi = users,
+                postSayisi = postCount,
                 //sonUser =   users.GetAwaiter().GetResult().OrderByDescending(x => x.TopicID).Take(1).SingleOrDefault(),
                 //user = users
             };
 
+
             return View(result);
         }
 
-        PostManager _postManager = new PostManager(new EfPostDal());
         public IActionResult SonGonderiler()
         {
             var result = _postManager.GetPostListWidthTopicAndUser().OrderByDescending(x => x.PostID).ToList();

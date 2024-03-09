@@ -9,7 +9,6 @@ using System.Security.AccessControl;
 
 namespace ForumSitesi.Controllers
 {
-    [AllowAnonymous]
     public class KonuController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -25,7 +24,8 @@ namespace ForumSitesi.Controllers
         PostManager _postManager = new PostManager(new EfPostDal());
         TopicManager _topicManager = new TopicManager(new EfTopicDal());
         CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
-
+        
+        [AllowAnonymous]
         public IActionResult Index(string? title, int id)
         {
             bool giris = false;
@@ -61,6 +61,7 @@ namespace ForumSitesi.Controllers
                 return RedirectToAction("Index", "default");
             }
         }
+
         [HttpGet]
         public ActionResult YeniKonu()
         {

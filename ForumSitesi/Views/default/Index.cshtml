@@ -71,12 +71,28 @@
                             <span class="op-6">Göneri Tarihi</span>
                             <a class="text-black" href="#">
                                 @{
+                                    var topicDate = Convert.ToDateTime(topic.TopicsDate);
+                                    var timeDifference = DateTime.Now - topicDate;
+                                    var formattedTime = "";
 
-                                    var tarih = @DateTime.Now - @Convert.ToDateTime(topic.TopicsDate);
+                                    if (timeDifference.Days > 0)
+                                    {
+                                        formattedTime = $"{timeDifference.Days} gün ";
+                                    }
 
+                                    if (timeDifference.Hours > 0)
+                                    {
+                                        formattedTime += $"{timeDifference.Hours} saat ";
+                                    }
+
+                                    if (timeDifference.Minutes > 0)
+                                    {
+                                        formattedTime += $"{timeDifference.Minutes} dakika ";
+                                    }
+
+                                    formattedTime += "önce";
                                 }
-                                @tarih.Days gün @tarih.Hours saat @tarih.Minutes Dakika Önce
-
+                                @formattedTime
                             </a>
                             
                                 <span class="op-6">Kullanıcı Adı</span> <a class="text-black"
