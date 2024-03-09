@@ -1,10 +1,13 @@
 ﻿using EntityLayer.Concrete;
 using ForumSitesi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumSitesi.Controllers
 {
+    [AllowAnonymous]
+
     public class KayitController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

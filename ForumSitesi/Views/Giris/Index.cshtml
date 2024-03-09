@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
+@model ForumSitesi.Models.ViewUserLoginModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,13 +50,13 @@
 <body>
     <div class="container-sm login-container">
         <h2>Giriş Yap</h2>
-        <form>
+        <form method="post">
             <div class="form-floating">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-                <label for="email">E Posta</label>
+                <input type="text" class="form-control" id="UserName" name="UserName" placeholder="UserName" required>
+                <label for="UserName">E Posta</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="password" placeholder="Şifre" required>
+                <input type="password" class="form-control" id="password" name="Password" placeholder="Şifre" required>
                 <label for="password">Şifre</label>
             </div>
             <div class="form-check mb-3">

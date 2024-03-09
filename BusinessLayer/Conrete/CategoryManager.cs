@@ -21,6 +21,8 @@ namespace BusinessLayer.Conrete
             return _categoryDal.GetAll();
         }
 
+      
+
         public void TDelete(Category t)
         {
             _categoryDal.Delete(t);

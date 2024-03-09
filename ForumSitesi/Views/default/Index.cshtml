@@ -5,33 +5,23 @@
 
 }
 <div class="container-md shadow-sm bg-body mt-5">
+    @if (Model.UserGiris)
+    {
+        <partial name="../_PartialLogin.cshtml" />
 
-    <div class="row bg-dark text-white">
-        <div class="col-4 my-auto">
-            <a href="#"><i class="bi bi-instagram text-white"></i></a>
-            <a href="#"><i class="bi bi-twitter text-white"></i></a>
-            <a href="#"><i class="bi bi-google text-white"></i></a>
-            <a href="#"><i class="bi bi-linkedin text-white"></i></a>
-        </div>
-        <div class="col-4 ms-auto text-end p-0">
-            <div class="btn-group">
-                <a class="btn btn-dark rounded-0 text-light" href="~/Kayit/Index">
-                    <i class="bi bi-person-add"></i>
-                </a>
-                <a href="~/Giris/Index" class="btn rounded-0 text-light" style="background-color: #035AA6 !important;" data-bs-toggle="modal"
-                        data-bs-whatever="Giris">
-                    <i class="bi bi-person"></i>
-                </a>
-            </div>
-        </div>
+    }
+    else
+    {
+        <partial name="../_PartialSign.cshtml" />
 
-    </div>
+    }
+
     <div class="row d-none d-md-block altmenu">
         <ul class="nav">
             @foreach (var category in Model.category)
             {
                 <li class="nav-item">
-                    <a class="nav-link" href="#">@category.Category.CategoryName</a>
+                    <a class="nav-link" href="#">@category.CategoryName</a>
                 </li>
             }
         </ul>
@@ -75,7 +65,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-8 mb-3 mb-sm-0">
                         <h5>
-                            <a asp-action="Index" asp-controller="Konu" asp-route-id="@topic.TopicID" class="text-primary">@topic.TopicTitle</a>
+                            <a @*asp-action="Index" asp-controller="Konu" asp-route-string="@UrlExtension.FriendlyUrl(topic.TopicTitle)" asp-route-id="@topic.TopicID"*@ href="konu/@UrlExtension.FriendlyUrl(topic.TopicTitle)/@topic.TopicID"  class="text-primary">@topic.TopicTitle</a>
                         </h5>
                         <p class="text-sm">
                             <span class="op-6">Göneri Tarihi</span>
@@ -137,14 +127,13 @@
                     <hr class="m-0">
                     @foreach (var item in Model.MostVotedTopic)
                     {
+
                         <div class="pos-relative px-3 py-3">
                             <h6 class="text-primary text-sm">
-                                <a href="#" class="text-primary">@item.TopicTitle</a>
+                                <a href="~/Konu/@UrlExtension.FriendlyUrl(item.TopicTitle)/@item.TopicID" class="text-primary">@item.TopicTitle</a>
                             </h6>
                             <p class="mb-0 text-sm">
-                                <span class="op-6">Posted</span> <a class="text-black"
-                                                                    href="#">39 minutes</a> <span class="op-6">ago by</span> <a class="text-black"
-                                                                                                                                href="#">AppStrapMaster</a>
+                                <p class="text-black">@item.TopicVotes Kişi Beğendi</p>
                             </p>
                         </div>
                         <hr class="m-0">
