@@ -1,5 +1,5 @@
 
-Asp Core Katmanlı Mimari Forum Temel Düzey Forum Sayfası
+Asp Core Katmanlı Mimari Forum Temel Düzey Forum Sayfası <br/>
 Identity Framework
 
 veri tabanı bağlantı dosyası DataAccessLayer/Concrete/RepositoryContext.cs
