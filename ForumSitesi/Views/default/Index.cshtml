@@ -21,7 +21,7 @@
             @foreach (var category in Model.category)
             {
                 <li class="nav-item">
-                    <a class="nav-link" href="#">@category.CategoryName</a>
+                    <a class="nav-link" href="~/anasayfa/@UrlExtension.FriendlyUrl(category.CategoryName)/@category.CategoryID">@category.CategoryName</a>
                 </li>
             }
         </ul>
@@ -36,14 +36,22 @@
             <div class="col-lg-6 mb-3 mb-sm-0">
                 <div class="dropdown bootstrap-select form-control form-control-lg bg-white bg-op-9 text-sm w-lg-50"
                      style="width: 100%;">
-                    <select class="form-control rounded-0"
-                            data-toggle="select" tabindex="-98">
-                        <option> Kategoriler </option>
-                        @foreach (var category in Model.NewestTopic)
-                        {
-                            <option> @category.Category.CategoryName </option>
+                    <select class="form-control rounded-0" onchange="sendSelectedValue()" id="optionSelect">
+                            <option> Kategoriler </option>
+                            <option> Hepsi </option>
+
+                            @foreach (var category in Model.category)
+                            {
+
+                                <option value="@UrlExtension.FriendlyUrl(category.CategoryName)/@category.CategoryID">  @category.CategoryName  </option>
+                            }
+                        </select>
+                    <script>
+                        function sendSelectedValue() {
+                            var selectedValue = document.getElementById("optionSelect").value;
+                            window.location.href = "/anasayfa/" + selectedValue;
                         }
-                    </select>
+                    </script>
                 </div>
             </div>
             <div class="col-lg-6 text-lg-right">
@@ -65,7 +73,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-8 mb-3 mb-sm-0">
                         <h5>
-                            <a @*asp-action="Index" asp-controller="Konu" asp-route-string="@UrlExtension.FriendlyUrl(topic.TopicTitle)" asp-route-id="@topic.TopicID"*@ href="konu/@UrlExtension.FriendlyUrl(topic.TopicTitle)/@topic.TopicID"  class="text-primary">@topic.TopicTitle</a>
+                            <a href="~/Konu/@UrlExtension.FriendlyUrl(topic.TopicTitle)/@topic.TopicID" class="text-primary">@topic.TopicTitle</a>
                         </h5>
                         <p class="text-sm">
                             <span class="op-6">Göneri Tarihi</span>
@@ -94,14 +102,14 @@
                                 }
                                 @formattedTime
                             </a>
-                            
-                                <span class="op-6">Kullanıcı Adı</span> <a class="text-black"
-                                                                           href="#"> @*topic.AppUser.Name*@</a>
-                           
+
+                            <span class="op-6">Kullanıcı Adı</span> <a class="text-black"
+                                                                       href="#"> @*topic.AppUser.Name*@</a>
+
                         </p>
                         <div class="text-sm op-5">
                             Kategori :
-                            <a class="text-black mr-2" href="#">@topic.Category.CategoryName</a>
+                            <a class="text-black mr-2" href="~/anasayfa/@UrlExtension.FriendlyUrl(topic.Category.CategoryName)/@topic.Category.CategoryID">@topic.Category.CategoryName</a>
                         </div>
                     </div>
                     <div class="col-md-4 op-7">
@@ -149,7 +157,7 @@
                                 <a href="~/Konu/@UrlExtension.FriendlyUrl(item.TopicTitle)/@item.TopicID" class="text-primary">@item.TopicTitle</a>
                             </h6>
                             <p class="mb-0 text-sm">
-                                <p class="text-black">@item.TopicVotes Kişi Beğendi</p>
+                            <p class="text-black">@item.TopicVotes Kişi Beğendi</p>
                             </p>
                         </div>
                         <hr class="m-0">
@@ -176,7 +184,7 @@
                         <div class="col-sm-6 flex-ew text-center py-3 border-right mx-0">
                             <a class="d-block lead font-weight-bold" href="~/default">@Model.userSayisi</a> Üyeler
                         </div>
-                       
+
                     </div>
                 </div>
             </div>

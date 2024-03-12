@@ -9,7 +9,7 @@
          @Html.DropDownList("CategoryID",(List<SelectListItem>)ViewBag.Category, new{@class="form-control"})
         <label class="form-control">İlk Postu Gir</label>
 
-        <textarea class="ckeditor mt-5" name="PostContent"></textarea>
+        <textarea class="ckeditor mt-5" maxlength="500" name="PostContent"></textarea>
         <button type="submit" class="btn btn-primary float-end m-1">Gönder</button>
     </div>
 </form>

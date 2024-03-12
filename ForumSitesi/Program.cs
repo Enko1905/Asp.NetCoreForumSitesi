@@ -78,6 +78,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=default}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "anasayfa",
+    pattern: "anasayfa/{title}/{id?}",
+    defaults: new { controller = "default", action = "Index" });
+
 
 
 app.MapControllerRoute(

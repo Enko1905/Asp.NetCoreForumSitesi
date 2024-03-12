@@ -21,7 +21,7 @@ namespace ForumSitesi.Controllers
         CategoryManager _category = new CategoryManager(new EfCategoryDal());
         PostManager _postManager = new PostManager(new EfPostDal());
 
-        public IActionResult Index()
+        public IActionResult Index(string ? kategori, int? id)
         {
             bool giris = false;
 
@@ -38,6 +38,10 @@ namespace ForumSitesi.Controllers
             var topics = _topicManager.GetTopicListWithCategory();
             var topicVotes = topics.OrderByDescending(x => x.TopicVotes).ThenByDescending(x => x.TopicID).ToList().Take(10);
             var newestTopics = topics.OrderByDescending(x => x.TopicID).ToList().Take(20);
+            if(id != null)
+            {
+                newestTopics = topics.Where(x => x.CategoryID == id).OrderByDescending(x => x.TopicID).Take(20).ToList();
+            }
             var category = _category.GetAll();
             var postCount = _postManager.GetAll().Count();
 
