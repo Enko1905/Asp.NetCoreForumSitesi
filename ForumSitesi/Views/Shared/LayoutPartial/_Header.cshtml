@@ -3,7 +3,7 @@
     <header>
     <nav class="navbar navbar-expand-lg bg-light navbar-light ">
         <div class="container">
-            <a class="navbar-brand" asp-action="Index" asp-controller="default"><span style="color: #035AA6;">Tek</span>Cevap</a>
+            <a class="navbar-brand" href="~/default"><span style="color: #035AA6;">Tek</span>Cevap</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="default">
+                        <a class="nav-link active" aria-current="page"  asp-controller="default">
                             <i class="bi bi-house-door"></i>
                             AnaSayfa
                         </a>
@@ -32,11 +32,12 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <div class="d-flex justify-content-center h-100">
+                            <form method="get" asp-action="index" asp-controller="default" >
                             <div class="searchbar">
-                                <input class="search_input" type="text" name="" placeholder="Ara">
-                                <a href="#" class="search_icon"><i class="bi bi-search"></i></a>
+                                <input class="search_input" type="text" name="ara" id="ara" placeholder="Ara">
+                                    <a asp-action="index" asp-controller="default" class="search_icon"><i class="bi bi-search"></i></a>
                             </div>
-
+                            </form>
                         </div>
                     </li>
                 </ul>

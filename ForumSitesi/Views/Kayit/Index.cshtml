@@ -61,19 +61,23 @@
         <form method="post">
             <div class="form-floating">
                 <input type="text" class="form-control" id="UserName" name="UserName" placeholder="isim" required>
-                <label for="emteail">Ad</label>
+                <label for="Username">Kullanıcı Adı</label>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="Name" name="Name" placeholder="isim" required>
-                <label for="emteail">kullanıcı Adı</label>
+                <label for="name">Adınız</label>
             </div>
             <div class="form-floating">
                 <input type="email" class="form-control" id="Mail" name="Mail" placeholder="name@example.com" required>
                 <label for="email">E-posta adresi</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" id="Gender" name="Gender" placeholder="isim" required>
-                <label for="emteail">Cinsiyet</label>
+                <select class="form-control" name="Gender" id="Gender">
+                    <option value="-1">Belirtmek istemiyorum</option>
+                    <option value="0">Erkek</option>
+                    <option value="1">Kadın</option>
+                </select>
+                <label for="gender">Cinsiyet</label>
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control" id="Password" name="Password" placeholder="Şifre" required>
