@@ -28,7 +28,7 @@ namespace EntityLayer.Concrete
 
         public int TopicVotes { get; set; }
         public int TopicView { get; set; } = 0;
-
+        public int TopicStatus { get; set; } = 0;
         public DateTime TopicsDate { get; set; }
         public List<Post> Posts { get; set; }   
         public Topic()

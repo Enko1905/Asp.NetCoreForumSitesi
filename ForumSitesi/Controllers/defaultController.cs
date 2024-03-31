@@ -21,7 +21,7 @@ namespace ForumSitesi.Controllers
         CategoryManager _category = new CategoryManager(new EfCategoryDal());
         PostManager _postManager = new PostManager(new EfPostDal());
 
-        public IActionResult Index(string ? kategori, int? id , string ? ara)
+        public IActionResult Index([FromRoute(Name = "id")] string? kategori,int? id , string ? ara)
         {
             bool giris = false;
 
@@ -35,7 +35,7 @@ namespace ForumSitesi.Controllers
                 giris = false;
             }
             var users = _userManager.Users.Count();
-            var topics = _topicManager.GetTopicListWithCategory();
+            var topics = _topicManager.GetTopicListWithCategory().Where(x=>x.TopicStatus==0);
             var topicVotes = topics.OrderByDescending(x => x.TopicVotes).ThenByDescending(x => x.TopicID).ToList().Take(10);
             var newestTopics = topics.OrderByDescending(x => x.TopicID).ToList().Take(20);
             if(id != null)
@@ -75,7 +75,7 @@ namespace ForumSitesi.Controllers
 
         public IActionResult Kategoriler()
         {
-            var result = _topicManager.GetTopicListWithCategory().ToList();
+            var result = _topicManager.GetTopicListWithCategory().Where(x => x.TopicStatus == 0).ToList();
             return View(result);
         }
         public IActionResult test()

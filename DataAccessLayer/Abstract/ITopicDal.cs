@@ -10,6 +10,7 @@ namespace DataAccessLayer.Abstract
     public interface ITopicDal:IGenericDal<Topic>
     {
         List<Topic> GetTopicListWithCategory();
+        List<Topic> GetTopicListWithCategoryAndUser();
         Task<List<Topic>> GetPostListWithUserAsync();
 
     }

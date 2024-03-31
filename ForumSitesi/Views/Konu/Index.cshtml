@@ -1,7 +1,6 @@
 ﻿@using EntityLayer.Concrete
 @model dynamic
 @{
-    ViewData["Title"] = Model.Gettopic.TopicTitle;
     Layout = "~/Views/Shared/_UIForumLayout.cshtml";
 }
 
@@ -38,9 +37,9 @@ else
         </li>
     </ul>
 </div>
-<div class="row row-cols-2 mt-3 mb-3 ">
+<div class="row mt-3 mb-3 ">
 
-    <div class="col-8">
+    <div class="col-xl-8 col-md-12 col-sm-12">
 
         @foreach (var Itempost in Model.Getpost)
         {
@@ -73,7 +72,7 @@ else
         }
 
         <div class="row mt-5">
-            <div class="col-12">
+            <div class="col-12 ">
                 <h2>Cevap Yaz</h2>
             </div>
             <div class="col-12" id="PostContent">
@@ -115,7 +114,7 @@ else
         </script>
 
     </div>
-    <div class="col-md-4 col-xl-4 col-sm-12">
+    <div class="col-xl-4 col-md-12 col-sm-12">
         <div class="card mb-3 commentcard text-center">
             <div class="card-header">
                 En Popüler Konular

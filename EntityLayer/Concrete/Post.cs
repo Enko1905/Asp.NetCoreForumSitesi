@@ -21,6 +21,7 @@ namespace EntityLayer.Concrete
         public int? AppUserId { get; set; }
         public AppUser AppUser { get; set; }
 
+        public int PostStatus { get; set; } = 0;
 
         public string PostContent { get; set; }
 

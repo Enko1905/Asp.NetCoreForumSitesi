@@ -29,5 +29,13 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
+        public List<Topic> GetTopicListWithCategoryAndUser()
+        {
+           using(var c = new RepositoryContext())
+            {
+                return c.Topics.Include(t => t.AppUser)
+                    .Include(t => t.Category).ToList();
+            }
+        }
     }
 }

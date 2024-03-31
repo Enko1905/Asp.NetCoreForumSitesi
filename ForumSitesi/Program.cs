@@ -73,22 +73,32 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-
-app.MapControllerRoute(
-    name: "default",
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapAreaControllerRoute(
+          name: "Admin",
+        areaName: "Admin",
+        pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
+          name: "default",
     pattern: "{controller=default}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
+    endpoints.MapControllerRoute(
     name: "anasayfa",
     pattern: "anasayfa/{title}/{id?}",
     defaults: new { controller = "default", action = "Index" });
 
-
-
-app.MapControllerRoute(
+    endpoints.MapControllerRoute(
         name: "konu",
         pattern: "konu/{title}/{id?}",
         defaults: new { controller = "Konu", action = "Index" });
+
+
+});
+
+
+
+
 app.MapRazorPages();
 
 app.Run();

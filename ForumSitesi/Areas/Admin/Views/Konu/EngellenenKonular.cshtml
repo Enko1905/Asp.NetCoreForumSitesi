@@ -1,0 +1,72 @@
+﻿@model List<Topic>
+<ol class="breadcrumb mb-4">
+    <li<h1 class="mt-4">Tüm Konular</h1>
+ <div class="breadcrumb-item active">Admin</li>
+</ol>
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık</th>
+                        <th>Oluşturan</th>
+                        <th>Yanıt Sayısı</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Durum</th>
+                        <th>Güncelle</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlık</th>
+                        <th>Oluşturan User</th>
+                        <th>Yanıt Sayısı</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Durum</th>
+                        <th>Güncelle</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var topic in Model)
+                    {
+                        <tr>
+                            <td>@topic.TopicID</td>
+                            <td>@topic.TopicTitle</td>
+                            <td>
+                                @topic.AppUser.UserName
+                                <a class="btn btn-primary"> > </a>
+                            </td>
+                            <td>@await Component.InvokeAsync("PostMessage", new { TopicID = topic.TopicID })</td>
+                            <td>@topic.TopicsDate</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    @if (topic.TopicStatus == 0)
+                                    {
+                                        <a class="btn btn-warning" asp-area="Admin" asp-action="KonuDurum" asp-controller="Konu" asp-route-id="@topic.TopicID">Engelle</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-success" asp-area="admin" asp-action="KonuDurum" asp-controller="Konu" asp-route-id="@topic.TopicID">Engeli Kaldır</a>
+
+                                    }
+
+                                </div>
+                            </td>
+                            <td> <a class="btn btn-primary" asp-action="KonuGuncelle" asp-controller="Konu" asp-area="Admin" asp-route-id=@topic.TopicID>Güncelle</a></td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

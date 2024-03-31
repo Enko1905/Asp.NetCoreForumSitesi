@@ -1,0 +1,17 @@
+@model Topic
+<ol class="breadcrumb mb-4">
+    <li<h1 class="mt-4"> Konular Güncelle 
+    </h1>
+        <div class="breadcrumb-item active">Admin</li>
+</ol>
+<div class="row">
+    <div class="inline">
+        <form method="post" action="KonuGuncelle">
+            <label class="text">Konu Başlığı </label>
+            @Html.HiddenFor(x => x.TopicID)
+            @Html.TextBoxFor(x => x.TopicTitle, new { @class = "form-control" })
+            <button class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+</div>
+

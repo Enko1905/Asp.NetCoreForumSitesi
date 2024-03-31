@@ -118,7 +118,7 @@
                                 <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">@topic.TopicVotes Oy</span>
                             </div>
                             <div class="col px-1">
-                                <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">0</span>
+                                <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">@await Component.InvokeAsync("PostMessage",new{topicid=topic.TopicID})</span>
                             </div>
                             <div class="col px-1">
                                 <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">@topic.TopicView</span>

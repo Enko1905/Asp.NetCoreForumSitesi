@@ -32,6 +32,11 @@ namespace BusinessLayer.Conrete
             return _topicDal.GetTopicListWithCategory();
         }
 
+        public List<Topic> GetTopicListWithCategoryAndUser()
+        {
+            return _topicDal.GetTopicListWithCategoryAndUser();
+        }
+
         public void TDelete(Topic t)
         {
             _topicDal.Delete(t);

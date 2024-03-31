@@ -24,10 +24,12 @@ namespace ForumSitesi.Controllers
         PostManager _postManager = new PostManager(new EfPostDal());
         TopicManager _topicManager = new TopicManager(new EfTopicDal());
         CategoryManager _categoryManager = new CategoryManager(new EfCategoryDal());
-        
+
         [AllowAnonymous]
+        [Route("Konu/{title}/{id}")]
         public IActionResult Index(string? title, int id)
         {
+            
             bool giris = false;
             string userId = _userManager.GetUserId(User);
 
@@ -40,13 +42,19 @@ namespace ForumSitesi.Controllers
             {
                 giris = true;
             }
+            
             ViewBag.LoginUserId = userId;
-            var topics = _topicManager.GetTopicListWithCategory();
+           
             if (id!=null)
             {
+                var topics = _topicManager.TGetById(id);
+                if (topics.TopicStatus == 1)
+                {
+                    return RedirectToAction("Index", "default");
+                }
                 var result = new
                 {
-                    Gettopic = _topicManager.GetTopicListWithCategory().Where(x => x.TopicID == id).FirstOrDefault(),
+                    Gettopic = _topicManager.GetTopicListWithCategory().Where(x => x.TopicID == id && x.TopicStatus==0).FirstOrDefault(),
                     MostVotedTopic = _topicManager.GetTopicListWithCategory().OrderByDescending(x => x.TopicID).ThenByDescending(x => x.TopicVotes).ToList(),
                     GetUserId = userId,
                     UserGiris = giris,
@@ -89,7 +97,7 @@ namespace ForumSitesi.Controllers
 
         }
         [HttpPost]
-        public ActionResult YeniKonu(Topic t, Post p)
+        public ActionResult YeniKonu([FromBody] Topic t, [FromBody] Post p)
         {
             if (t.AppUserId != null)
             {

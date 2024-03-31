@@ -9,8 +9,10 @@ namespace BusinessLayer.Abstract
 {
     public interface ITopicService:IGenericService<Topic>
     {
+        [Obsolete]
         List<Topic> GetTopicListWithCategory();
         Task<List<Topic>> GetPostListWithUserAsync();
+        List<Topic> GetTopicListWithCategoryAndUser();
 
 
     }
