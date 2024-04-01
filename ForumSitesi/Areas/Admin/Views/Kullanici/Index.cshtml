@@ -1,0 +1,50 @@
+﻿@model  Task<List<AppUser>>
+<ol class="breadcrumb mb-4">
+    <li<h1 class="mt-4">Tüm Konular</h1>
+ <div class="breadcrumb-item active">Admin</li>
+</ol>
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+           
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>UserName</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>UserName</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Durum</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var user in await Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+
+                            <td> - </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

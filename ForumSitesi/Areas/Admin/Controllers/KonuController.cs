@@ -3,7 +3,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using X.PagedList;
 namespace ForumSitesi.Areas.Admin.Controllers
 {
     [AllowAnonymous]
@@ -11,9 +11,9 @@ namespace ForumSitesi.Areas.Admin.Controllers
     public class KonuController : Controller
     {
         TopicManager _topicManager = new TopicManager(new EfTopicDal());
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            var result = _topicManager.GetTopicListWithCategoryAndUser().ToList();
+            var result = _topicManager.GetTopicListWithCategoryAndUser().ToList().ToPagedList(page,10);
             return View(result);
         }
         public IActionResult EngellenenKonular()

@@ -1,21 +1,19 @@
-﻿@model Task<List<Topic>>
+﻿@model ForumSitesi.Controllers.defaultController.ViewModel
 
 <html>
     <head></head>
     <body>
 
 
-@foreach (var item in await Model)
+@foreach (var item in Model.YeniKonular)
 {
-    @item.AppUser.Name <br/>
-    @item.AppUser.Gender <br/>
-    @item.AppUser.Email <br/>
-    @item.AppUserId
+    @item.TopicTitle<br/>
+    @item.TopicStatus <br/>
+    @item.Category.CategoryName <br/>
+    @item.TopicsDate
    
 }
-    @{
-       
-    }
+    
  
 </body>
 </html>

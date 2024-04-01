@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Security.AccessControl;
-
+using X.PagedList;
 namespace ForumSitesi.Controllers
 {
     public class KonuController : Controller
@@ -29,7 +28,7 @@ namespace ForumSitesi.Controllers
         [Route("Konu/{title}/{id}")]
         public IActionResult Index(string? title, int id)
         {
-            
+
             bool giris = false;
             string userId = _userManager.GetUserId(User);
 
@@ -42,10 +41,10 @@ namespace ForumSitesi.Controllers
             {
                 giris = true;
             }
-            
+
             ViewBag.LoginUserId = userId;
-           
-            if (id!=null)
+
+            if (id != null)
             {
                 var topics = _topicManager.TGetById(id);
                 if (topics.TopicStatus == 1)
@@ -54,13 +53,14 @@ namespace ForumSitesi.Controllers
                 }
                 var result = new
                 {
-                    Gettopic = _topicManager.GetTopicListWithCategory().Where(x => x.TopicID == id && x.TopicStatus==0).FirstOrDefault(),
+                    Gettopic = _topicManager.GetTopicListWithCategory().Where(x => x.TopicID == id && x.TopicStatus == 0).FirstOrDefault(),
                     MostVotedTopic = _topicManager.GetTopicListWithCategory().OrderByDescending(x => x.TopicID).ThenByDescending(x => x.TopicVotes).ToList(),
                     GetUserId = userId,
                     UserGiris = giris,
                     Getpost = _postManager.GetPostListWidthTopicAndUser().Where(x => x.TopicID == id).ToList(),
                     GetPostCount = _postManager.GetPostListWidthTopicAndUser().Where(x => x.TopicID == id).Count()
                 };
+
                 return View(result);
             }
 

@@ -1,4 +1,4 @@
-﻿@model List<Topic>
+﻿@model IPagedList<Topic>
 <ol class="breadcrumb mb-4">
     <li<h1 class="mt-4">Tüm Konular</h1>
  <div class="breadcrumb-item active">Admin</li>
@@ -66,7 +66,35 @@
                                     
                 </tbody>
             </table>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
         </div>
     </div>
 
 </div>
+<script>
+    $('#datatablesSimple').DataTable({
+        language: {
+            info: "_TOTAL_ kayıttan _START_ - _END_ kayıt gösteriliyor.",
+            infoEmpty: "Gösterilecek hiç kayıt yok.",
+            loadingRecords: "Kayıtlar yükleniyor.",
+            lengthMenu: "Sayfada _MENU_ kayıt göster",
+            zeroRecords: "Tablo boş",
+            search: "Arama:",
+            infoFiltered: "(toplam _MAX_ kayıttan filtrelenenler)",
+            buttons: {
+                copyTitle: "Panoya kopyalandı.",
+                copySuccess: "Panoya %d satır kopyalandı",
+                copy: "Kopyala",
+                print: "Yazdır",
+            },
+            "paging": false
+
+            paginate: {
+                first: "İlk",
+                previous: "Önceki",
+                next: "Sonraki",
+                last: "Son"
+            },
+        }
+    });
+</script>

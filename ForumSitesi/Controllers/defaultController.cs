@@ -21,7 +21,9 @@ namespace ForumSitesi.Controllers
         CategoryManager _category = new CategoryManager(new EfCategoryDal());
         PostManager _postManager = new PostManager(new EfPostDal());
 
-        public IActionResult Index([FromRoute(Name = "id")] string? kategori,int? id , string ? ara)
+
+
+        public IActionResult Index([FromRoute(Name = "id")] string? kategori, int? id, string? ara)
         {
             bool giris = false;
 
@@ -35,20 +37,23 @@ namespace ForumSitesi.Controllers
                 giris = false;
             }
             var users = _userManager.Users.Count();
-            var topics = _topicManager.GetTopicListWithCategory().Where(x=>x.TopicStatus==0);
+            var topics = _topicManager.GetTopicListWithCategory().Where(x => x.TopicStatus == 0);
             var topicVotes = topics.OrderByDescending(x => x.TopicVotes).ThenByDescending(x => x.TopicID).ToList().Take(10);
             var newestTopics = topics.OrderByDescending(x => x.TopicID).ToList().Take(20);
-            if(id != null)
+            if (id != null)
             {
                 newestTopics = topics.Where(x => x.CategoryID == id).OrderByDescending(x => x.TopicID).Take(20).ToList();
             }
-            if (!string.IsNullOrEmpty(ara)){
+            if (!string.IsNullOrEmpty(ara))
+            {
                 ara = ara.ToLower().Trim();
                 newestTopics = topics.Where(x => x.TopicTitle.ToLower().Trim().Contains(ara)).OrderByDescending(x => x.TopicID).ToList();
 
             }
             var category = _category.GetAll();
             var postCount = _postManager.GetAll().Count();
+
+
 
             var result = new
             {
@@ -78,10 +83,35 @@ namespace ForumSitesi.Controllers
             var result = _topicManager.GetTopicListWithCategory().Where(x => x.TopicStatus == 0).ToList();
             return View(result);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Test
+        public class ViewModel
+        {
+            public List<Topic> YeniKonular { get; set; }
+            public List<Category> Kategoriler { get; set; }
+        }
         public IActionResult test()
         {
-            var topic = _topicManager.GetPostListWithUserAsync().GetAwaiter().GetResult().Take(25);
-            return View(topic);
+            var model = new ViewModel
+            {
+                YeniKonular = _topicManager.GetTopicListWithCategory().Where(x => x.TopicStatus == 0).ToList(),
+                Kategoriler = _category.GetAll().ToList()
+
+            };
+            return View(model);
         }
     }
 }
